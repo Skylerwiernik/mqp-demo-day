@@ -28,7 +28,8 @@ class LED(Device):
 
     def __brightness_updated(self, device_property: DeviceProperty):
         duty_cycle = device_property.value * 100
-        self.__set_brightness(duty_cycle)
+        if self.enabled.value:
+            self.__set_brightness(duty_cycle)
 
     def __enabled_updated(self, device_property: DeviceProperty):
         if device_property.value:

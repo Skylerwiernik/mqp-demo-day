@@ -16,7 +16,7 @@ class LED(Device):
         self.pwm = GPIO.PWM(self.pin, 1000)
         self.pwm.start(0)
 
-        self.graphic_cell = GraphicCell()
+        self.graphic_cell = self.__make_graphic_cell()
 
         self.brightness.add_listener(self.__brightness_updated)
         self.enabled.add_listener(self.__enabled_updated)

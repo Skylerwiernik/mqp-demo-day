@@ -39,7 +39,7 @@ class LED(Device):
     def __make_graphic_cell(self) -> GraphicCell:
         header = HeaderText(self.name)
         switch = Switch(self.enabled)
-        slider = Slider(self.brightness, 0, 1, 0.1)
+        slider = Slider(self.brightness, float(0), float(1), float(0.1))
         return GraphicCell([header, switch, slider])
 
 

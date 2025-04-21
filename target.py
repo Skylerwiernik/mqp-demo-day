@@ -3,12 +3,10 @@ from typing import Callable
 from time import sleep
 from cyberonics_py import Target
 
-from robot import PiBot
-
 
 class LEDSequence(Target):
 
-    def __init__(self, robot: PiBot):
+    def __init__(self, robot: 'PiBot'):
         self.robot = robot
         self.process = None
         super().__init__("LED Sequence", robot)

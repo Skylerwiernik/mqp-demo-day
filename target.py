@@ -17,7 +17,7 @@ class LEDSequence(Target):
         self.process.start()
         return self.process
 
-    def _shutdown(self, beat: Callable[[], None]):
+    async def _shutdown(self, beat: Callable[[], None]):
         if self.process:
             self.process.terminate()
             self.robot.blue_led.enabled = False

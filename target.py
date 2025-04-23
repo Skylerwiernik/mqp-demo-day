@@ -20,8 +20,8 @@ class LEDSequence(Target):
     async def _shutdown(self, beat: Callable[[], None]):
         if self.process:
             self.process.terminate()
-            self.robot.blue_led.enabled = False
-            self.robot.green_led.enabled = False
+            self.robot.blue_led.enabled.value = False
+            self.robot.green_led.enabled.value = False
 
     def __worker(self):
         brightness = 0.25

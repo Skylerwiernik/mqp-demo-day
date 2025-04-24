@@ -13,7 +13,7 @@ class LEDSequence(Target):
 
 
     def _run(self) -> Process:
-        self.process = Process(target=self.__worker)
+        self.process = Process(target=self.__simple_script)
         self.process.start()
         return self.process
 
@@ -38,3 +38,12 @@ class LEDSequence(Target):
                 brightness = 0
             else:
                 brightness += 0.25
+
+    def __simple_script(self):
+        self.robot.blue_led.brightness.value = 0.5
+        while True:
+            print("set true")
+            self.robot.blue_led.enabled.value = True
+            sleep(3)
+            print("set false")
+            self.robot.blue_led.enabled.value = False

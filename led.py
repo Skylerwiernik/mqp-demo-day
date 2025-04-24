@@ -24,6 +24,13 @@ class LED(Device):
         super().__init__([self.brightness, self.enabled], self.graphic_cell)
 
     def __set_brightness(self, duty_cycle: float):
+        try:
+            self.pwm.stop()
+        except AttributeError:
+            pass  # If pwm wasn't initialized yet
+
+        self.pwm = GPIO.PWM(self.pin, 1000)
+        self.pwm.start(duty_cycle)
         self.pwm.ChangeDutyCycle(duty_cycle)
 
     def __brightness_updated(self, device_property: DeviceProperty):

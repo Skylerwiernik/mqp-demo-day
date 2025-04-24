@@ -31,14 +31,18 @@ class LED(Device):
         duty_cycle = device_property.value * 100
         if self.enabled.value:
             self.__set_brightness(duty_cycle)
+        else:
+            print("disabled")
 
     def __enabled_updated(self, device_property: DeviceProperty):
         print("enabled updated. val: ", device_property.value)
         if device_property.value:
-            if self.brightness.value == 0:
+            print("val yes")
+            if self.brightness.value < 0.1:
                 self.__set_brightness(0.5)
             self.__set_brightness(self.brightness.value * 100)
         else:
+            print("val no")
             self.__set_brightness(0)
 
     def __make_graphic_cell(self) -> GraphicCell:

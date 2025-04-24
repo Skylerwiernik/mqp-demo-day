@@ -27,11 +27,13 @@ class LED(Device):
         self.pwm.ChangeDutyCycle(duty_cycle)
 
     def __brightness_updated(self, device_property: DeviceProperty):
+        print("brightness updated")
         duty_cycle = device_property.value * 100
         if self.enabled.value:
             self.__set_brightness(duty_cycle)
 
     def __enabled_updated(self, device_property: DeviceProperty):
+        print("enabled updated")
         if device_property.value:
             if self.brightness.value == 0:
                 self.__set_brightness(0.5)

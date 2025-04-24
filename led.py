@@ -35,11 +35,7 @@ class LED(Device):
 
     def __enabled_updated(self, device_property: DeviceProperty):
         if device_property.value:
-            if self.brightness.value < 0.1:
-                self.brightness.value = 0.5
-            else:
-                self.__set_brightness(self.brightness.value * 100)
-
+            self.__set_brightness(self.brightness.value * 100)
         else:
             self.__set_brightness(0)
 

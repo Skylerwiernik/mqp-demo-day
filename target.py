@@ -13,7 +13,7 @@ class LEDSequence(Target):
 
 
     def _run(self) -> Process:
-        self.process = Process(target=self.__simple_script)
+        self.process = Process(target=self.__worker)
         self.process.start()
         return self.process
 

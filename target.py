@@ -47,3 +47,4 @@ class LEDSequence(Target):
             sleep(3)
             print("set false")
             self.robot.blue_led.enabled.value = False
+            sleep(3)

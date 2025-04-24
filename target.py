@@ -28,11 +28,11 @@ class LEDSequence(Target):
         while True:
             self.robot.blue_led.brightness.value = brightness
             self.robot.blue_led.enabled.value = True
-            sleep(1)
+            sleep(3)
             self.robot.blue_led.enabled.value = False
             self.robot.green_led.brightness.value = brightness
             self.robot.green_led.enabled.value = True
-            sleep(1)
+            sleep(3)
             self.robot.green_led.enabled.value = False
             if brightness == 1:
                 brightness = 0

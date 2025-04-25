@@ -13,11 +13,13 @@ class LEDSequence(Target):
         super().__init__("LED Sequence", robot)
 
 
-    def _run(self) -> threading.Thread:
+    def _run(self):
         self.running = True
-        self.thread = threading.Thread(target=self.__worker)
-        self.thread.start()
-        return self.thread
+        self.robot.green_led.brightness.value = 0.5
+        self.robot.blue_led.brightness.value = 0.5
+        while self.running:
+            self.__toggle_leds()
+            sleep(2)
 
     async def _shutdown(self, beat: Callable[[], None]):
         if self.thread:
@@ -25,13 +27,6 @@ class LEDSequence(Target):
             self.thread.join()
             self.robot.blue_led.enabled.value = False
             self.robot.green_led.enabled.value = False
-
-    def __worker(self):
-        self.robot.green_led.brightness.value = 0.5
-        self.robot.blue_led.brightness.value = 0.5
-        while self.running:
-            self.__toggle_leds()
-            sleep(2)
 
 
     def __toggle_leds(self):

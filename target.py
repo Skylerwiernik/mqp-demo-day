@@ -27,6 +27,7 @@ class LEDSequence(Target):
             self.robot.green_led.enabled.value = False
 
     def __worker(self):
+        self.robot.green_led.brightness.value = 0.5
         self.robot.blue_led.brightness.value = 0.5
         while self.running:
             self.robot.green_led.enabled.value = False

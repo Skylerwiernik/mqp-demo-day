@@ -23,6 +23,10 @@ class LED(Device):
 
         super().__init__([self.brightness, self.enabled], self.graphic_cell)
 
+
+    def __del__(self):
+        self.pwm.stop()
+
     def __set_brightness(self, duty_cycle: float):
         self.pwm.ChangeDutyCycle(duty_cycle)
 

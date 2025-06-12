@@ -11,10 +11,10 @@ class LED(Device):
         self.brightness = DeviceProperty(float(0), True)
         self.enabled = DeviceProperty(False, True)
 
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setup(self.pin, GPIO.OUT)
-        self.pwm = GPIO.PWM(self.pin, 1000)
-        self.pwm.start(0)
+        # GPIO.setmode(GPIO.BCM)
+        # GPIO.setup(self.pin, GPIO.OUT)
+        # self.pwm = GPIO.PWM(self.pin, 1000)
+        # self.pwm.start(0)
 
         self.graphic_cell = self.__make_graphic_cell()
 
@@ -24,20 +24,22 @@ class LED(Device):
         super().__init__([self.brightness, self.enabled], self.graphic_cell)
 
     def __set_brightness(self, duty_cycle: float):
-        self.pwm.ChangeDutyCycle(duty_cycle)
+        print(f"Brightness set to {duty_cycle}")
+        # self.pwm.ChangeDutyCycle(duty_cycle)
 
     def __brightness_updated(self, device_property: DeviceProperty):
         duty_cycle = device_property.value * 100
         if self.enabled.value:
             self.__set_brightness(duty_cycle)
         else:
-            print("disabled")
+            print("disabled (brightness not set)")
 
     def __enabled_updated(self, device_property: DeviceProperty):
-        if device_property.value:
-            self.__set_brightness(self.brightness.value * 100)
-        else:
-            self.__set_brightness(0)
+        print(f"Enabled? {device_property.value}")
+        # if device_property.value:
+        #     self.__set_brightness(self.brightness.value * 100)
+        # else:
+        #     self.__set_brightness(0)
 
     def __make_graphic_cell(self) -> GraphicCell:
         header = HeaderText(self.name)

@@ -6,7 +6,6 @@ from target import LEDSequence
 
 class PiBot(Robot):
     def __init__(self):
-        self.green_led = LED("Green LED", 23)
-        self.blue_led = LED("Blue LED", 24)
+        self.led = LED("Green LED")
         self.target = LEDSequence(self)
-        super().__init__([self.green_led, self.blue_led], [self.target])
+        super().__init__([self.led], [self.target])

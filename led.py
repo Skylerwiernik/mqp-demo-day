@@ -1,6 +1,6 @@
 from cyberonics_py import Device, DeviceProperty
 from cyberonics_py.graphics import GraphicCell, Switch, Slider, HeaderText
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
 
 
 class LED(Device):
